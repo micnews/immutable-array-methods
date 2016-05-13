@@ -1,6 +1,7 @@
 import test from 'ava';
 import 'babel-core/register';
 import {push, pop, unshift, shift, splice} from './index';
+import arrayMethods from './index';
 
 test('push()', t => {
   t.same(push(['a', 'b', 'c'], 'd'), ['a', 'b', 'c', 'd']);
@@ -23,4 +24,12 @@ test('shift()', t => {
 test('splice()', t => {
   t.same(splice(['a', 'b', 'c', 'd'], 2, 1), ['a', 'b', 'd']);
   t.same(splice(['a', 'b', 'c', 'd'], 2, 0, 'e'), ['a', 'b', 'e', 'c', 'd']);
+});
+
+test('default import', t => {
+  t.is(arrayMethods.push, push);
+  t.is(arrayMethods.unshift, unshift);
+  t.is(arrayMethods.pop, pop);
+  t.is(arrayMethods.shift, shift);
+  t.is(arrayMethods.splice, splice);
 });
