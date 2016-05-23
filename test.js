@@ -1,6 +1,6 @@
 import test from 'ava';
 import 'babel-core/register';
-import {push, pop, unshift, shift, splice} from './index';
+import {push, pop, unshift, shift, splice, set} from './index';
 import arrayMethods from './index';
 
 test('push()', t => {
@@ -26,10 +26,16 @@ test('splice()', t => {
   t.same(splice(['a', 'b', 'c', 'd'], 2, 0, 'e'), ['a', 'b', 'e', 'c', 'd']);
 });
 
+test('set', t => {
+  t.same(set([0, 1, 2], 0, 666), [666, 1, 2]);
+  t.same(set([], 0, [666]), [[666]]);
+});
+
 test('default import', t => {
   t.is(arrayMethods.push, push);
   t.is(arrayMethods.unshift, unshift);
   t.is(arrayMethods.pop, pop);
   t.is(arrayMethods.shift, shift);
   t.is(arrayMethods.splice, splice);
+  t.is(arrayMethods.set, set);
 });

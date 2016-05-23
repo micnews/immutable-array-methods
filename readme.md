@@ -26,7 +26,7 @@ console.log('splice()');
 console.log('input is unchanged', input);
 console.log('result', result);
 
-// also available is .push(), .shift(), .unshift()
+// also available is .push(), .shift(), .unshift(), .set()
 
 ```
 
