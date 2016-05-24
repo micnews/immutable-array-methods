@@ -8,4 +8,8 @@ export const set = (array, index, value) =>
   array[index] === value
   ? array
   : array.slice(0, index).concat([value]).concat(array.slice(index + 1));
-export default {push, pop, shift, unshift, splice, set};
+export const flatten = array =>
+  array.some(value => Array.isArray(value))
+  ? [].concat(...array)
+  : array;
+export default {push, pop, shift, unshift, splice, set, flatten};

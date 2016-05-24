@@ -1,6 +1,6 @@
 import test from 'ava';
 import 'babel-core/register';
-import {push, pop, unshift, shift, splice, set} from './index';
+import {push, pop, unshift, shift, splice, set, flatten} from './index';
 import arrayMethods from './index';
 
 test('push()', t => {
@@ -35,6 +35,20 @@ test('set', t => {
   t.is(actual, expected);
 });
 
+test('flatten, no nested arrays', t => {
+  const input = [1, 2, 3];
+  const actual = flatten(input);
+  const expected = input;
+  t.is(actual, expected);
+});
+
+test('flatten, with nested arrays', t => {
+  const input = Object.freeze([1, [2, 3], [4, [5]]]);
+  const actual = flatten(input);
+  const expected = [1, 2, 3, 4, [5]];
+  t.deepEqual(actual, expected);
+});
+
 test('default import', t => {
   t.is(arrayMethods.push, push);
   t.is(arrayMethods.unshift, unshift);
@@ -42,4 +56,5 @@ test('default import', t => {
   t.is(arrayMethods.shift, shift);
   t.is(arrayMethods.splice, splice);
   t.is(arrayMethods.set, set);
+  t.is(arrayMethods.flatten, flatten);
 });
