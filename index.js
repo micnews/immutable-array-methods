@@ -12,4 +12,14 @@ export const flatten = array =>
   array.some(value => Array.isArray(value))
   ? [].concat(...array)
   : array;
-export default {push, pop, shift, unshift, splice, set, flatten};
+export const map = (array, fn) => {
+  let changed = false;
+  const newArray = array.map((obj, index) => {
+    const newObj = fn(obj, index);
+    changed = changed || obj !== newObj;
+    return newObj;
+  });
+
+  return changed ? newArray : array;
+};
+export default {push, pop, shift, unshift, splice, set, flatten, map};

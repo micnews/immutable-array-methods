@@ -1,6 +1,6 @@
 import test from 'ava';
 import 'babel-core/register';
-import {push, pop, unshift, shift, splice, set, flatten} from './index';
+import {push, pop, unshift, shift, splice, set, flatten, map} from './index';
 import arrayMethods from './index';
 
 test('push()', t => {
@@ -49,6 +49,27 @@ test('flatten, with nested arrays', t => {
   t.deepEqual(actual, expected);
 });
 
+test('map', t => {
+  const input = [1, 2, 3, 4];
+  const actual = map(input, num => num % 2);
+  const expected = [1, 0, 1, 0];
+  t.deepEqual(actual, expected);
+});
+
+test('map not changed values', t => {
+  const input = [1, 2, 3];
+  const actual = map(input, num => num);
+  const expected = input;
+  t.is(actual, expected);
+});
+
+test('map w index', t => {
+  const input = ['', ''];
+  const actual = map(input, (val, index) => index);
+  const expected = [0, 1];
+  t.deepEqual(actual, expected);
+});
+
 test('default import', t => {
   t.is(arrayMethods.push, push);
   t.is(arrayMethods.unshift, unshift);
@@ -57,4 +78,5 @@ test('default import', t => {
   t.is(arrayMethods.splice, splice);
   t.is(arrayMethods.set, set);
   t.is(arrayMethods.flatten, flatten);
+  t.is(arrayMethods.map, map);
 });
