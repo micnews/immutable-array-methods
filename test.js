@@ -26,6 +26,20 @@ test('splice()', t => {
   t.deepEqual(splice(['a', 'b', 'c', 'd'], 2, 0, 'e'), ['a', 'b', 'e', 'c', 'd']);
 });
 
+test('splice() no change', t => {
+  const input = ['a', 'b', 'c', 'd'];
+  const actual = splice(input, 0, 0);
+  const expected = input;
+  t.is(actual, expected);
+});
+
+test('splice(), unchanged array', t => {
+  const input = ['a', 'b', 'c', 'd'];
+  const actual = splice(input, 2, 2, 'c', 'd');
+  const expected = input;
+  t.is(actual, expected);
+});
+
 test('set', t => {
   t.deepEqual(set([0, 1, 2], 0, 666), [666, 1, 2]);
   t.deepEqual(set([], 0, [666]), [[666]]);
