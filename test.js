@@ -1,6 +1,6 @@
 import test from 'ava';
 import 'babel-core/register';
-import {push, pop, unshift, shift, splice, set, flatten, map} from './index';
+import {push, pop, unshift, shift, splice, set, flatten, map, move} from './index';
 import arrayMethods from './index';
 
 test('push()', t => {
@@ -81,6 +81,33 @@ test('map w index', t => {
   const input = ['', ''];
   const actual = map(input, (val, index) => index);
   const expected = [0, 1];
+  t.deepEqual(actual, expected);
+});
+
+test('move() forward', t => {
+  const input = [1, 2, 3];
+  const from = 0;
+  const to = 1;
+  const actual = move(input, from, to);
+  const expected = [2, 1, 3];
+  t.deepEqual(actual, expected);
+});
+
+test('move() backward', t => {
+  const input = [1, 2, 3];
+  const from = 1;
+  const to = 0;
+  const actual = move(input, from, to);
+  const expected = [2, 1, 3];
+  t.deepEqual(actual, expected);
+});
+
+test('move() multiple indexes length', t => {
+  const input = [1, 2, 3];
+  const from = 0;
+  const to = 2;
+  const actual = move(input, from, to);
+  const expected = [2, 3, 1];
   t.deepEqual(actual, expected);
 });
 

@@ -37,4 +37,13 @@ export const map = (array, fn) => {
   return changed ? newArray : array;
 };
 
-export default {push, pop, shift, unshift, splice, set, flatten, map};
+export const move = (array, fromIndex, toIndex) => {
+  return splice(
+    splice(array, fromIndex, 1),
+    toIndex,
+    0,
+    array[fromIndex]
+  );
+};
+
+export default {push, pop, shift, unshift, splice, set, flatten, map, move};
