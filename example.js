@@ -16,4 +16,9 @@ result = methods.map(input, function (num) {
   return num % 2;
 });
 
+result = methods.move([1, 2, 3], 0, 1);
+console.log('move()');
+console.log('input is unchanged', input);
+console.log('result', result);
+
 // also available is .push(), .shift(), .unshift(), .set()
