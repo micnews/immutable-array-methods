@@ -1,6 +1,6 @@
 import test from 'ava';
 import 'babel-core/register';
-import {push, pop, unshift, shift, splice, set, flatten, map, move} from './index';
+import {push, pop, unshift, shift, splice, set, flatten, map, move, filter} from './index';
 import arrayMethods from './index';
 
 test('push()', t => {
@@ -111,6 +111,20 @@ test('move() multiple indexes length', t => {
   t.deepEqual(actual, expected);
 });
 
+test('filter() unchanged', t => {
+  const input = [1, 2, 3];
+  const actual = filter(input, () => true);
+  const expected = input;
+  t.is(actual, expected);
+});
+
+test('filter()', t => {
+  const input = [1, 2, 3];
+  const actual = filter(input, (value) => value > 1);
+  const expected = [2, 3];
+  t.deepEqual(actual, expected);
+});
+
 test('default import', t => {
   t.is(arrayMethods.push, push);
   t.is(arrayMethods.unshift, unshift);
@@ -120,4 +134,5 @@ test('default import', t => {
   t.is(arrayMethods.set, set);
   t.is(arrayMethods.flatten, flatten);
   t.is(arrayMethods.map, map);
+  t.is(arrayMethods.filter, filter);
 });
