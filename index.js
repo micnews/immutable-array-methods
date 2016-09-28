@@ -46,4 +46,14 @@ export const move = (array, fromIndex, toIndex) => {
   );
 };
 
-export default {push, pop, shift, unshift, splice, set, flatten, map, move};
+export const filter = (array, fn) => {
+  let changed = false;
+  const newArray = array.filter(row => {
+    const shouldKeep = fn(row);
+    changed = !shouldKeep || changed;
+    return shouldKeep;
+  });
+  return changed ? newArray : array;
+};
+
+export default {push, pop, shift, unshift, splice, set, flatten, map, move, filter};
