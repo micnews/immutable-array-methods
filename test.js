@@ -125,6 +125,13 @@ test('filter()', t => {
   t.deepEqual(actual, expected);
 });
 
+test('filter() unique values', t => {
+  const input = [1, 1, 2, 3];
+  const actual = filter(input, (value, index, originalArray) => originalArray.indexOf(value) === index);
+  const expected = [1, 2, 3];
+  t.deepEqual(actual, expected);
+});
+
 test('default import', t => {
   t.is(arrayMethods.push, push);
   t.is(arrayMethods.unshift, unshift);
