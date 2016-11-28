@@ -48,8 +48,8 @@ export const move = (array, fromIndex, toIndex) => {
 
 export const filter = (array, fn) => {
   let changed = false;
-  const newArray = array.filter(row => {
-    const shouldKeep = fn(row);
+  const newArray = array.filter((row, index, originalArray) => {
+    const shouldKeep = fn(row, index, originalArray);
     changed = !shouldKeep || changed;
     return shouldKeep;
   });
